@@ -404,29 +404,9 @@
 </head>
 <body>
 
-<!-- BARRA DE NAVEGACIÓN SUPERIOR -->
-<nav class="main-navbar">
-    <a href="index.html" class="nav-brand">
-        <img src="https://i.postimg.cc/VNd9fcNq/logo-png.png" alt="Centro AMA Logo" class="nav-logo">
-        <span class="brand-title">Adultos Mayores Aprendiendo</span>
-    </a>
+    <!-- Contenedor donde se cargará la barra de navegación -->
+<div id="navbar-container"></div>
 
-    <div class="nav-menu">
-        <a href="index.html" class="nav-link active">Página principal</a>
-        <a href="quienes-somos.html" class="nav-link">Quienes somos</a>
-        <a href="programa-educativo.html" class="nav-link">Programa Educativo</a>
-        <a href="testimonios.html" class="nav-link">Testimonios</a>
-        <a href="contacto.html" class="nav-link">Contacto y ubicación</a>
-        
-        <!-- Icono de Búsqueda -->
-        <button class="nav-search-btn" title="Buscar">
-            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-        </button>
-    </div>
-</nav>
 
 <!-- Barra de accesibilidad flotante -->
 <div class="accessibility-bar">
@@ -561,6 +541,25 @@
             document.getElementById('footer-container').innerHTML = data;
         })
         .catch(error => console.error('Error al cargar el footer:', error));
+</script>
+    <!-- Script para cargar navbar.html y marcar el enlace activo automáticamente -->
+<script>
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-container').innerHTML = data;
+
+            // Detectar en qué página estamos para poner el enlace en negrita (active)
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        })
+        .catch(error => console.error('Error al cargar el navbar:', error));
 </script>
     
 </body>
