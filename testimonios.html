@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro AMA - Testimonios</title>
+    
+    <!-- Tipografías oficiales Centro AMA: Poppins (Títulos) y Lato (Texto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; max-width: 100%; }
+
+        :root {
+            --base-font-size: 18px;
+            /* Paleta Oficial Centro AMA */
+            --ama-magenta: #F90186; 
+            --ama-green: #6AB937; 
+            --ama-lime: #99C844; 
+            --ama-turquoise: #00BAC0; 
+            --ama-yellow: #FFD200; 
+            --dark-gray: #2c2c2c;
+            --soft-gray: #4a4a4a;
+        }
+
+        /* Fondo de la página */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            background: #ffffff; 
+            color: var(--dark-gray);
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            font-size: var(--base-font-size);
+            transition: font-size 0.3s ease;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; word-wrap: break-word; }
+
+        /* --- BARRA DE NAVEGACIÓN SUPERIOR ESTILO GOOGLE SITES --- */
+        .main-navbar {
+            background-color: #f0f2f5;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .brand-title {
+            font-size: 1.05rem;
+            color: #202124;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #3c4043;
+            font-size: 0.92rem;
+            font-weight: 400;
+            transition: color 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: #000000;
+        }
+
+        /* Página activa marcada en negrita */
+        .nav-link.active {
+            font-weight: 700;
+            color: #000000;
+        }
+
+        .nav-search-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #3c4043;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            margin-left: 0.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-search-btn:hover {
+            color: var(--ama-magenta);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--ama-magenta) 0%, #c4006c 100%);
+            color: #fff;
+            padding: 4rem 1rem 3rem 1rem;
+            text-align: center;
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 8px 25px rgba(249, 1, 134, 0.25);
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h3 {
+            margin: 0.5rem 0 0 0;
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: var(--ama-yellow);
+            font-weight: 700;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 1.5rem 0.8rem; 
+        }
+
+        /* BLOQUES DE TEXTO Y SECCIONES */
+        section {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: clamp(1.2rem, 4vw, 2.5rem);
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        section::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
+            background: linear-gradient(to right, var(--ama-magenta), var(--ama-turquoise), var(--ama-yellow));
+        }
+
+        section.visible { opacity: 1; transform: translateY(0); }
+
+        h2 {
+            color: var(--dark-gray);
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(to right, var(--ama-magenta), var(--ama-turquoise), var(--ama-yellow)) 1;
+            padding-bottom: 0.6rem;
+            margin-top: 0;
+            font-size: clamp(1.4rem, 4vw, 2.1rem);
+            font-weight: 800;
+        }
+
+        p { text-align: left; font-size: clamp(0.95rem, 2vw, 1.1rem); color: var(--soft-gray); }
+
+        /* --- ESTILOS ESPECÍFICOS DEL CARRUSEL DE TESTIMONIOS --- */
+        .intro-testimonios {
+            text-align: justify;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        
+        .carousel-track {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding: 20px 10px 40px 10px;
+            width: 100%;
+            -ms-overflow-style: none; /* IE y Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        
+        .carousel-track::-webkit-scrollbar {
+            display: none; /* Chrome, Safari y Opera */
+        }
+        
+        .testimonial-card {
+            flex: 0 0 70%;
+            scroll-snap-align: center;
+            background: #ffffff;
+            border-left: 5px solid var(--ama-turquoise);
+            border-radius: 16px;
+            padding: 30px 30px 60px 30px;
+            box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+            position: relative;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 1px solid rgba(0,0,0,0.04);
+            border-right: 1px solid rgba(0,0,0,0.04);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+        }
+        
+        .quote-icon {
+            font-size: 3.5rem;
+            color: var(--ama-yellow);
+            position: absolute;
+            top: 5px;
+            left: 18px;
+            opacity: 0.5;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+            color: #444;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--ama-magenta);
+            text-align: right;
+            margin-right: 75px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .testimonial-img {
+            position: absolute;
+            bottom: -20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+            background-color: #eee;
+            object-fit: cover;
+        }
+        
+        .carousel-btn {
+            background-color: var(--ama-magenta);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            position: absolute;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            transition: background 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .carousel-btn:hover {
+            background-color: #c4006c;
+            transform: scale(1.08);
+        }
+        
+        .btn-left { left: -15px; }
+        .btn-right { right: -15px; }
+
+        /* BARRA DE ACCESIBILIDAD FLOTANTE */
+        .accessibility-bar {
+            position: fixed; 
+            bottom: 25px; 
+            right: 95px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 0.4rem 0.8rem;
+            border-radius: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            z-index: 1000;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .accessibility-btn {
+            background: #f0f0f0; border: none; width: 36px; height: 36px; border-radius: 50%;
+            font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.95rem; cursor: pointer;
+        }
+
+        /* BOTÓN FLOTANTE DE WHATSAPP */
+        .btn-whatsapp-flotante {
+            position: fixed; 
+            bottom: 25px; 
+            right: 25px;
+            width: 60px; 
+            height: 60px;
+            background-color: #25d366; 
+            border-radius: 50%; 
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
+            z-index: 9999;
+            text-decoration: none; 
+            transition: all 0.3s ease;
+        }
+
+        .btn-whatsapp-flotante:hover { 
+            transform: scale(1.12); 
+            box-shadow: 0px 8px 22px rgba(37, 211, 102, 0.45);
+        }
+
+        .btn-whatsapp-flotante svg { 
+            width: 32px; 
+            height: 32px; 
+            fill: white; 
+        }
+
+        @media (max-width: 900px) { 
+            .main-navbar { padding: 0 1rem; }
+            .nav-menu { gap: 1rem; overflow-x: auto; }
+            .nav-link { font-size: 0.85rem; }
+            .accessibility-label { display: none; } 
+            .accessibility-bar { right: 80px; bottom: 15px; }
+            .btn-whatsapp-flotante { bottom: 15px; right: 15px; width: 52px; height: 52px; }
+            .btn-whatsapp-flotante svg { width: 28px; height: 28px; }
+
+            .testimonial-card { flex: 0 0 88%; }
+            .btn-left { left: -5px; }
+            .btn-right { right: -5px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- BARRA DE NAVEGACIÓN SUPERIOR ESTILO GOOGLE SITES -->
+<nav class="main-navbar">
+    <a href="index.html" class="nav-brand">
+        <img src="https://i.postimg.cc/XJRbwZv8/1B5B19EC-6A02-4219-A62F-4D9C4DEB65D8.png" alt="Centro AMA Logo" class="nav-logo">
+        <span class="brand-title">Adultos Mayores Aprendi...</span>
+    </a>
+
+    <div class="nav-menu">
+        <a href="index.html" class="nav-link">Página principal</a>
+        <a href="quienes-somos.html" class="nav-link">Quienes somos</a>
+        <a href="programa-educativo.html" class="nav-link">Programa Educativo</a>
+        <a href="testimonios.html" class="nav-link active">Testimonios</a>
+        <a href="contacto.html" class="nav-link">Contacto y ubicación</a>
+        
+        <!-- Icono de Búsqueda -->
+        <button class="nav-search-btn" title="Buscar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </div>
+</nav>
+
+<!-- Accesibilidad -->
+<div class="accessibility-bar">
+    <span class="accessibility-label" style="font-size:0.75rem; font-weight:700;">Texto:</span>
+    <button class="accessibility-btn" onclick="adjustFont(1)" title="Aumentar tamaño" style="color:var(--ama-turquoise);">A+</button>
+    <button class="accessibility-btn" onclick="adjustFont(-1)" title="Disminuir tamaño" style="color:var(--ama-magenta);">A-</button>
+</div>
+
+<!-- Botón Flotante de WhatsApp -->
+<a href="https://wa.me/525519377301" class="btn-whatsapp-flotante" target="_blank" rel="noopener noreferrer" title="Contactar por WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 512l149.8-39.3c32.6 18.2 68.7 27.8 106.1 27.8 122.4 0 222-99.6 222-222 0-59.3-23.1-115.1-65-157.4zM223.9 448c-32.6 0-64.6-8.8-92.7-25.3l-6.6-3.9-68.9 18 18.3-67.2-4.3-6.8c-18.2-28.7-27.8-62-27.8-96.5 0-101.4 82.5-184 184-184 59.3 0 115.1 23.1 157.4 65s65 115.1 65 157.4c0 101.4-82.5 184-184 184zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</a>
+
+<header class="hero">
+    <h1>Testimonios</h1>
+    <h3>Historias de Vida, Pertenencia y Transformación</h3>
+</header>
+
+<main class="container">
+
+    <!-- SECCIÓN INTRODUCTORIA -->
+    <section>
+        <div class="intro-testimonios">
+            <h2>Voces que Inspiran: Comunidad y Bienestar</h2>
+            <p>En el Centro AMA sabemos que el mayor deterioro de la vejez no viene del cuerpo, viene de sentirse invisible. Por ello, nuestra filosofía se centra en otorgarle a cada persona el lugar de respeto, escucha y valor que merece. Al ayudarles a redescubrir su valor personal y social, transformamos su calidad de vida y fomentamos la creación de redes de apoyo inquebrantables.</p>
+            <p>Creemos firmemente que <strong>el aprendizaje constante es la clave de la juventud</strong>. Cuando se fomenta la educación, la convivencia y el autocuidado, la vejez deja de verse como un declive y se transforma en una etapa funcional, activa y con un impacto profundamente positivo en la salud física, mental y emocional. Aquí, tu mejor etapa apenas comienza.</p>
+        </div>
+    </section>
+
+    <!-- CARRUSEL DE TESTIMONIOS -->
+    <section style="background: transparent; box-shadow: none; border: none; padding: 0;">
+        <div class="carousel-wrapper">
+            <button class="carousel-btn btn-left" onclick="moverCarrusel(-1)" aria-label="Anterior">&#10094;</button>
+            
+            <div class="carousel-track" id="track">
+                
+                <!-- Testimonio 1 -->
+                <div class="testimonial-card">
+                    <span class="quote-icon">“</span>
+                    <p class="testimonial-text">Llegué sintiéndome invisible, pero el trato amoroso y los vínculos que he forjado aquí me devolvieron la alegría. Sentirme genuinamente valorada ha sanado mis emociones; hoy me despierto con un propósito y una sonrisa.</p>
+                    <p class="testimonial-author">— Rosa, 68 años</p>
+                    <img src="https://i.pravatar.cc/150?img=47" alt="Rosa" class="testimonial-img">
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="testimonial-card">
+                    <span class="quote-icon">“</span>
+                    <p class="testimonial-text">Mantenerme en movimiento y aprender cosas nuevas le ha devuelto la juventud a mi cuerpo y a mi mente. Reír y compartir el esfuerzo con mis compañeros me ha dado la mejor red de apoyo que podría pedir.</p>
+                    <p class="testimonial-author">— Carlos, 72 años</p>
+                    <img src="https://i.pravatar.cc/150?img=11" alt="Carlos" class="testimonial-img">
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="testimonial-card">
+                    <span class="quote-icon">“</span>
+                    <p class="testimonial-text">Comprendí que el aprendizaje constante es la verdadera fuente de la juventud. Retomar mis estudios me demostró que mi mente sigue brillante. La conexión intelectual que compartimos aquí me hace sentir plenamente viva.</p>
+                    <p class="testimonial-author">— Elena, 65 años</p>
+                    <img src="https://i.pravatar.cc/150?img=32" alt="Elena" class="testimonial-img">
+                </div>
+
+                <!-- Testimonio 4 -->
+                <div class="testimonial-card">
+                    <span class="quote-icon">“</span>
+                    <p class="testimonial-text">El apoyo mutuo y la empatía que se respira en este centro me dieron una profunda paz espiritual. Saber que importo y que tengo mucho que aportar al mundo me ha regalado una segunda juventud llena de sentido.</p>
+                    <p class="testimonial-author">— Manuel, 70 años</p>
+                    <img src="https://i.pravatar.cc/150?img=68" alt="Manuel" class="testimonial-img">
+                </div>
+
+                <!-- Testimonio 5 -->
+                <div class="testimonial-card">
+                    <span class="quote-icon">“</span>
+                    <p class="testimonial-text">Aquí me enseñaron que mi experiencia es un tesoro. Entre las clases, las charlas y los amigos, he alcanzado un bienestar que abarca toda mi vida. Nunca es tarde para crecer, esta es definitivamente mi mejor etapa.</p>
+                    <p class="testimonial-author">— Carmen, 74 años</p>
+                    <img src="https://i.pravatar.cc/150?img=44" alt="Carmen" class="testimonial-img">
+                </div>
+
+            </div>
+            
+            <button class="carousel-btn btn-right" onclick="moverCarrusel(1)" aria-label="Siguiente">&#10095;</button>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    // Ajuste dinámico de accesibilidad
+    let currentSize = 18; 
+    function adjustFont(direction) {
+        currentSize += direction * 2;
+        if (currentSize < 14) currentSize = 14;
+        if (currentSize > 24) currentSize = 24;
+        document.documentElement.style.setProperty('--base-font-size', currentSize + 'px');
+    }
+
+    // Animación de aparición suave para secciones
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { root: null, threshold: 0.05 });
+    sections.forEach(section => observer.observe(section));
+
+    // Lógica de desplazamiento del carrusel
+    function moverCarrusel(direccion) {
+        const track = document.getElementById('track');
+        const card = track.querySelector('.testimonial-card');
+        if (card) {
+            const cardWidth = card.offsetWidth + 20; 
+            track.scrollBy({
+                left: direccion * cardWidth,
+                behavior: 'smooth'
+            });
+        }
+    }
+</script>
+
+<!-- Contenedor donde se cargará el pie de página -->
+<div id="footer-container"></div>
+
+<!-- Script para cargar footer.html dinámicamente -->
+<script>
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el footer:', error));
+</script>
+
+</body>
+</html>

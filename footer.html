@@ -1,0 +1,133 @@
+<!-- footer.html -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<style>
+  :root {
+    --ama-teal: #00a896;
+    --ama-teal-dark: #007f72;
+    --ama-magenta: #e91e63;
+    --ama-pink: #ff4081;
+    --ama-orange: #ff9800;
+    --ama-purple: #8e24aa;
+    --ama-green: #2e7d32;
+    --ama-blue: #0288d1;
+    --bg-gradient: linear-gradient(135deg, #f8f0f6 0%, #edf7f6 50%, #fff8ec 100%);
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --text-main: #374151;
+    --text-muted: #6b7280;
+  }
+
+  .site-footer {
+    background: var(--bg-gradient);
+    width: 100%;
+    position: relative;
+    padding: 0 20px 40px 20px;
+    overflow: hidden;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .rainbow-bar {
+    height: 8px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--ama-teal) 0%, var(--ama-magenta) 25%, var(--ama-orange) 50%, var(--ama-purple) 75%, var(--ama-blue) 100%);
+    margin-bottom: 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+
+  .footer-container { max-width: 1150px; margin: 0 auto; position: relative; z-index: 1; }
+  .footer-top { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; margin-bottom: 35px; }
+  .footer-card { background: var(--card-bg); padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid rgba(255,255,255,0.8); backdrop-filter: blur(5px); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .footer-card:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+  .footer-heading { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .footer-heading.contact-title { color: var(--ama-teal); }
+  .footer-heading.social-title { color: var(--ama-magenta); }
+  .footer-description { margin-bottom: 22px; color: #4b5563; font-size: 1.05rem; line-height: 1.5; }
+  .contact-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .contact-item { display: flex; align-items: center; gap: 16px; }
+  .contact-item a { color: var(--text-main); text-decoration: none; font-size: 1.05rem; font-weight: 600; transition: color 0.2s ease, transform 0.2s ease; }
+  .contact-item a:hover { color: var(--ama-magenta); transform: translateX(4px); }
+  .icon-badge { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.2rem; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+  .icon-badge.location { background: linear-gradient(135deg, #ff4081, #d81b60); }
+  .icon-badge.phone { background: linear-gradient(135deg, #00b4d8, #007f72); }
+  .icon-badge.whatsapp { background: linear-gradient(135deg, #25d366, #128c7e); }
+  .activity-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .tag { padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+  .tag.teal { background-color: #e0f2f1; color: var(--ama-teal-dark); }
+  .tag.pink { background-color: #fce4ec; color: var(--ama-magenta); }
+  .tag.orange { background-color: #fff3e0; color: #e65100; }
+  .tag.purple { background-color: #f3e5f5; color: var(--ama-purple); }
+  .social-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 15px; }
+  .social-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 50px; color: #ffffff !important; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.12); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  .social-btn i { font-size: 1.3rem; }
+  .social-btn:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 20px rgba(0,0,0,0.22); }
+  .social-btn.facebook { background: linear-gradient(135deg, #1877f2, #0b51b7); }
+  .social-btn.instagram { background: linear-gradient(45deg, #f09433, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+  .social-btn.whatsapp { background: linear-gradient(135deg, #25d366, #0e9d45); }
+  .social-btn.youtube { background: linear-gradient(135deg, #ff0000, #b30000); }
+  .social-btn.tiktok { background: linear-gradient(135deg, #000000, #25f4ee, #fe2c55); }
+  .footer-divider { border: none; height: 3px; background: linear-gradient(90deg, transparent 0%, var(--ama-teal) 20%, var(--ama-magenta) 50%, var(--ama-orange) 80%, transparent 100%); margin: 30px 0 25px 0; opacity: 0.6; }
+  .footer-bottom { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .footer-copyright { font-family: 'Montserrat', sans-serif; color: var(--ama-teal-dark); font-weight: 800; font-size: 1.1rem; letter-spacing: 0.3px; }
+  .footer-subtitle { color: #4b5563; font-size: 1rem; font-weight: 600; }
+  .footer-subtitle i { color: var(--ama-magenta); }
+  .official-btn { margin-top: 8px; display: inline-flex; align-items: center; gap: 10px; padding: 12px 26px; border-radius: 50px; background: linear-gradient(135deg, var(--ama-magenta), var(--ama-purple)); color: #ffffff; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700; box-shadow: 0 6px 18px rgba(233, 30, 99, 0.3); transition: all 0.3s ease; }
+  .official-btn:hover { background: linear-gradient(135deg, var(--ama-teal), var(--ama-blue)); box-shadow: 0 8px 22px rgba(0, 168, 150, 0.4); transform: translateY(-2px); }
+
+  @media (max-width: 820px) {
+    .footer-top { grid-template-columns: 1fr; gap: 25px; }
+    .site-footer { padding: 0 15px 30px 15px; }
+    .footer-card { padding: 22px; }
+  }
+</style>
+
+<footer class="site-footer">
+  <div class="rainbow-bar"></div>
+  <div class="footer-container">
+    <div class="footer-top">
+      <div class="footer-card contact-card">
+        <h3 class="footer-heading contact-title"><i class="fa-solid fa-heart-pulse"></i> ¿Listo para comenzar?</h3>
+        <p class="footer-description">Ponte en contacto con nosotros para conocer horarios, talleres, costos de recuperación e inscripciones.</p>
+        <ul class="contact-list">
+          <li class="contact-item">
+            <div class="icon-badge location"><i class="fa-solid fa-location-dot"></i></div>
+            <a href="https://maps.google.com/?q=Av.+del+R%C3%ADo+25,+Bosques+de+M%C3%A9xico,+Tlalnepantla" target="_blank" rel="noopener noreferrer">Av. del Río 25, Bosques de México, Tlalnepantla.</a>
+          </li>
+          <li class="contact-item">
+            <div class="icon-badge phone"><i class="fa-solid fa-phone"></i></div>
+            <a href="tel:5591808193">5591 8081 93</a>
+          </li>
+          <li class="contact-item">
+            <div class="icon-badge whatsapp"><i class="fa-brands fa-whatsapp"></i></div>
+            <a href="https://wa.me/525519377301" target="_blank" rel="noopener noreferrer">5519 3773 01 <span style="color: var(--ama-green); font-size: 0.9rem;">(Mensaje directo)</span></a>
+          </li>
+        </ul>
+        <div class="activity-tags">
+          <span class="tag teal">Cursos & Talleres</span>
+          <span class="tag pink">Salud & Bienestar</span>
+          <span class="tag orange">Tecnología</span>
+          <span class="tag purple">Convivencia</span>
+        </div>
+      </div>
+      <div class="footer-card social-card">
+        <h3 class="footer-heading social-title"><i class="fa-solid fa-share-nodes"></i> ¡Síguenos en redes sociales!</h3>
+        <p class="footer-description">Únete a nuestra comunidad activa y entérate de nuestros eventos especiales, fotografías y actividades.</p>
+        <div class="social-buttons">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-btn facebook"><i class="fa-brands fa-facebook-f"></i> <span>Facebook</span></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn instagram"><i class="fa-brands fa-instagram"></i> <span>Instagram</span></a>
+          <a href="https://wa.me/525519377301" target="_blank" rel="noopener noreferrer" class="social-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> <span>WhatsApp</span></a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-btn youtube"><i class="fa-brands fa-youtube"></i> <span>YouTube</span></a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-btn tiktok"><i class="fa-brands fa-tiktok"></i> <span>TikTok</span></a>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="footer-bottom">
+      <p class="footer-copyright">CENTRO AMA © 2026. Todos los derechos reservados.</p>
+      <p class="footer-subtitle">Diseñado con <i class="fa-solid fa-heart"></i> para la comunidad de Adultos Mayores en Tlalnepantla.</p>
+      <a href="https://amaadultosmayoresaprendiendo.com" target="_blank" rel="noopener noreferrer" class="official-btn"><i class="fa-solid fa-globe"></i> Visitar sitio web oficial</a>
+    </div>
+  </div>
+</footer>
