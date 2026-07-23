@@ -47,83 +47,6 @@
             word-wrap: break-word;
         }
 
-        /* --- BARRA DE NAVEGACIÓN ESTILO GOOGLE SITES --- */
-        .main-navbar {
-            background-color: #ff2ee3; /* Fondo gris claro idéntico al de la imagen */
-            width: 100%;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1100;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .nav-logo {
-            height: 36px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .brand-title {
-            font-size: 1.05rem;
-            color: #202124;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 1.8rem;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #3c4043;
-            font-size: 0.92rem;
-            font-weight: 400;
-            transition: color 0.15s ease;
-            white-space: nowrap;
-        }
-
-        .nav-link:hover {
-            color: #000000;
-        }
-
-        /* Estado activo (Página actual marcada en negrita) */
-        .nav-link.active {
-            font-weight: 700;
-            color: #000000;
-        }
-
-        .nav-search-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #3c4043;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4px;
-            margin-left: 0.5rem;
-            transition: color 0.2s ease;
-        }
-
-        .nav-search-btn:hover {
-            color: var(--ama-magenta);
-        }
-
         /* --- HERO SECTION --- */
         .hero {
             background-image: url('https://i.ibb.co/vxN6FpGC/ama.png');
@@ -384,18 +307,7 @@
             fill: white;
         }
 
-        /* Adaptación pantallas pequeñas */
         @media (max-width: 900px) {
-            .main-navbar {
-                padding: 0 1rem;
-            }
-            .nav-menu {
-                gap: 1rem;
-                overflow-x: auto;
-            }
-            .nav-link {
-                font-size: 0.85rem;
-            }
             .accessibility-label {
                 display: none;
             }
@@ -404,163 +316,157 @@
 </head>
 <body>
 
-    <!-- Contenedor donde se cargará la barra de navegación -->
-<div id="navbar-container"></div>
+    <!-- Único contenedor para cargar el navbar dinámicamente -->
+    <div id="navbar-container"></div>
 
-
-<!-- Barra de accesibilidad flotante -->
-<div class="accessibility-bar">
-    <span class="accessibility-label">Texto:</span>
-    <button class="accessibility-btn" onclick="adjustFont(1)" title="Aumentar tamaño">A+</button>
-    <button class="accessibility-btn" onclick="adjustFont(-1)" title="Disminuir tamaño">A-</button>
-</div>
-
-<!-- BOTÓN DE WHATSAPP FLOTANTE -->
-<a href="https://wa.me/525519377301" class="btn-whatsapp-flotante" target="_blank" rel="noopener noreferrer" title="Contáctanos por WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 512l149.8-39.3c32.6 18.2 68.7 27.8 106.1 27.8 122.4 0 222-99.6 222-222 0-59.3-23.1-115.1-65-157.4zM223.9 448c-32.6 0-64.6-8.8-92.7-25.3l-6.6-3.9-68.9 18 18.3-67.2-4.3-6.8c-18.2-28.7-27.8-62-27.8-96.5 0-101.4 82.5-184 184-184 59.3 0 115.1 23.1 157.4 65s65 115.1 65 157.4c0 101.4-82.5 184-184 184zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-    </svg>
-</a>
-
-<!-- Hero -->
-<header class="hero">
-    <img src="https://i.postimg.cc/VNd9fcNq/logo-png.png" alt="Centro AMA - Adultos Mayores Aprendiendo" class="hero-logo">
-    
-    <a href="testimonios.html" class="impact-phrase">
-        QUE DICEN NUESTROS ALUMNOS
-    </a>
-</header>
-
-<main class="container">
-
-    <!-- Sección 1 -->
-    <section id="envejecimiento">
-        <h2>El Envejecimiento en México: Una Realidad Inevitable</h2>
-        <p>
-            Nuestro país está experimentando un cambio demográfico sin precedentes. Las estadísticas señalan que para el año 2050, casi una cuarta parte de la población mexicana tendrá 60 años o más. En localidades como Tlalnepantla, esta realidad ya es palpable, con más del 16% de sus habitantes perteneciendo a este grupo de edad. 
-        </p>
-        <p>
-            El verdadero reto no es el aumento de la edad en la población, sino las condiciones en las que estamos envejeciendo. Actualmente, la falta de espacios dedicados al aprendizaje y la convivencia activa fomenta la soledad, el aislamiento y el rápido deterioro físico, mental y emocional de las personas mayores.
-        </p>
-    </section>
-
-    <!-- Sección 2 -->
-    <section id="descubrimiento">
-        <h2>Respuesta: Centro AMA</h2>
-        <p>
-            En medio de este panorama, nace el <strong>Centro AMA (Adultos Mayores Aprendiendo)</strong> como una respuesta urgente ante la invisibilidad cultural que sufre esta etapa de la vida. Descubrimos que el envejecimiento no debe ser sinónimo de retiro de la sociedad o de pasividad, sino una etapa de redescubrimiento personal.
-        </p>
-        <p>
-            Centro AMA no fue creado para rellenar el tiempo libre de las personas, sino para activar su mente y su cuerpo a través de un sistema de enseñanza gerontogógico profesional. Es el hallazgo de un espacio seguro, cálido e inclusivo donde los adultos mayores vuelven a ser los protagonistas de su propio aprendizaje y desarrollo.
-        </p>
-    </section>
-
-    <!-- Sección 3 -->
-    <section id="meta">
-        <h2>Nuestra Meta: Cambiar la forma en que vemos la vejez</h2>
-        <p>
-            Es común que las familias busquen en internet alternativas usando palabras que la sociedad mexicana ha arraigado, tales como un lugar de cuidado para el <span class="seo-keyword">"abuelito"</span>, actividades recreativas para el <span class="seo-keyword">"viejito"</span>, talleres para la <span class="seo-keyword">"tercera edad"</span> o, en casos más extremos, un <span class="seo-keyword">"asilo de ancianos"</span>. 
-        </p>
-        <p>
-            Aunque estas búsquedas nacen del cariño o la necesidad de apoyo, muchas veces cargan con un estereotipo inconsciente: la idea de que el adulto mayor es alguien dependiente, infantilizado o que ya ha terminado su ciclo de aporte social.
-        </p>
-        <p>
-            <strong>Nuestra meta es erradicar estos prejuicios de raíz.</strong> En Centro AMA demostramos que quienes asisten no son "viejitos pasivos" que necesitan ser entretenidos, sino personas activas con un potencial intelectual y creativo enorme. Transformamos los conceptos tradicionales de cuidado asistencial por el de <strong>desarrollo, autonomía y empoderamiento</strong>.
-        </p>
-    </section>
-
-    <!-- Sección 4: Grid de Navegación -->
-    <div class="nav-grid">
-        <a href="quienes-somos.html" class="nav-card">
-            <h3>¿Quiénes Somos?</h3>
-            <p>Conoce nuestra misión, visión, los valores que nos guían y nuestro pilar educativo gerontogógico.</p>
-            <span class="btn-action">Conócenos</span>
-        </a>
-
-        <a href="programa-educativo.html" class="nav-card">
-            <h3>Programa Educativo</h3>
-            <p>Explora nuestros talleres, cursos y metodologías adaptadas especialmente para el desarrollo cognitivo.</p>
-            <span class="btn-action">Ver Talleres</span>
-        </a>
-
-        <a href="contacto.html" class="nav-card">
-            <h3>Contacto y Ubicación</h3>
-            <p>¿Listo para visitarnos? Encuentra nuestra dirección en Tlalnepantla, teléfonos y horarios de atención.</p>
-            <span class="btn-action">Escríbenos</span>
-        </a>
+    <!-- Barra de accesibilidad flotante -->
+    <div class="accessibility-bar">
+        <span class="accessibility-label">Texto:</span>
+        <button class="accessibility-btn" onclick="adjustFont(1)" title="Aumentar tamaño">A+</button>
+        <button class="accessibility-btn" onclick="adjustFont(-1)" title="Disminuir tamaño">A-</button>
     </div>
 
-</main>
+    <!-- BOTÓN DE WHATSAPP FLOTANTE -->
+    <a href="https://wa.me/525519377301" class="btn-whatsapp-flotante" target="_blank" rel="noopener noreferrer" title="Contáctanos por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 512l149.8-39.3c32.6 18.2 68.7 27.8 106.1 27.8 122.4 0 222-99.6 222-222 0-59.3-23.1-115.1-65-157.4zM223.9 448c-32.6 0-64.6-8.8-92.7-25.3l-6.6-3.9-68.9 18 18.3-67.2-4.3-6.8c-18.2-28.7-27.8-62-27.8-96.5 0-101.4 82.5-184 184-184 59.3 0 115.1 23.1 157.4 65s65 115.1 65 157.4c0 101.4-82.5 184-184 184zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
 
-<script>
-    /* JAVASCRIPT: CONTROL DE TAMAÑO DE LETRA */
-    let currentSize = 18; 
-    function adjustFont(direction) {
-        currentSize += direction * 2;
-        if (currentSize < 14) currentSize = 14;
-        if (currentSize > 24) currentSize = 24;
-        document.documentElement.style.setProperty('--base-font-size', currentSize + 'px');
-    }
-
-    /* JAVASCRIPT: ANIMACIÓN AL DESPLAZARSE */
-    const sections = document.querySelectorAll('section');
-    const observerOptions = { root: null, threshold: 0.05 };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, observerOptions);
-
-    sections.forEach(section => observer.observe(section));
-
-    /* JAVASCRIPT: EFECTO FLOTADOR WHATSAPP */
-    window.addEventListener('scroll', function() {
-        var winScrollTop = window.scrollY || document.documentElement.scrollTop;
-        var floater = document.querySelector('.btn-whatsapp-flotante');
+    <!-- Hero -->
+    <header class="hero">
+        <img src="https://i.postimg.cc/VNd9fcNq/logo-png.png" alt="Centro AMA - Adultos Mayores Aprendiendo" class="hero-logo">
         
-        var fromTop = 100;
-        var topPosition = winScrollTop + fromTop;
-        
-        floater.style.top = topPosition + 'px';
-    });
+        <a href="testimonios.html" class="impact-phrase">
+            QUE DICEN NUESTROS ALUMNOS
+        </a>
+    </header>
 
-    window.dispatchEvent(new Event('scroll'));
-</script>
-    
-<!-- Contenedor donde se cargará el pie de página -->
-<div id="footer-container"></div>
+    <main class="container">
 
-<!-- Script para cargar footer.html dinámicamente -->
-<script>
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-container').innerHTML = data;
-        })
-        .catch(error => console.error('Error al cargar el footer:', error));
-</script>
-    <!-- Script para cargar navbar.html y marcar el enlace activo automáticamente -->
-<script>
-    fetch('navbar.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar-container').innerHTML = data;
+        <!-- Sección 1 -->
+        <section id="envejecimiento">
+            <h2>El Envejecimiento en México: Una Realidad Inevitable</h2>
+            <p>
+                Nuestro país está experimentando un cambio demográfico sin precedentes. Las estadísticas señalan que para el año 2050, casi una cuarta parte de la población mexicana tendrá 60 años o más. En localidades como Tlalnepantla, esta realidad ya es palpable, con más del 16% de sus habitantes perteneciendo a este grupo de edad. 
+            </p>
+            <p>
+                El verdadero reto no es el aumento de la edad en la población, sino las condiciones en las que estamos envejeciendo. Actualmente, la falta de espacios dedicados al aprendizaje y la convivencia activa fomenta la soledad, el aislamiento y el rápido deterioro físico, mental y emocional de las personas mayores.
+            </p>
+        </section>
 
-            // Detectar en qué página estamos para poner el enlace en negrita (active)
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
+        <!-- Sección 2 -->
+        <section id="descubrimiento">
+            <h2>Respuesta: Centro AMA</h2>
+            <p>
+                En medio de este panorama, nace el <strong>Centro AMA (Adultos Mayores Aprendiendo)</strong> como una respuesta urgente ante la invisibilidad cultural que sufre esta etapa de la vida. Descubrimos que el envejecimiento no debe ser sinónimo de retiro de la sociedad o de pasividad, sino una etapa de redescubrimiento personal.
+            </p>
+            <p>
+                Centro AMA no fue creado para rellenar el tiempo libre de las personas, sino para activar su mente y su cuerpo a través de un sistema de enseñanza gerontogógico profesional. Es el hallazgo de un espacio seguro, cálido e inclusivo donde los adultos mayores vuelven a ser los protagonistas de su propio aprendizaje y desarrollo.
+            </p>
+        </section>
+
+        <!-- Sección 3 -->
+        <section id="meta">
+            <h2>Nuestra Meta: Cambiar la forma en que vemos la vejez</h2>
+            <p>
+                Es común que las familias busquen en internet alternativas usando palabras que la sociedad mexicana ha arraigado, tales como un lugar de cuidado para el <span class="seo-keyword">"abuelito"</span>, actividades recreativas para el <span class="seo-keyword">"viejito"</span>, talleres para la <span class="seo-keyword">"tercera edad"</span> o, en casos más extremos, un <span class="seo-keyword">"asilo de ancianos"</span>. 
+            </p>
+            <p>
+                Aunque estas búsquedas nacen del cariño o la necesidad de apoyo, muchas veces cargan con un estereotipo inconsciente: la idea de que el adulto mayor es alguien dependiente, infantilizado o que ya ha terminado su ciclo de aporte social.
+            </p>
+            <p>
+                <strong>Nuestra meta es erradicar estos prejuicios de raíz.</strong> En Centro AMA demostramos que quienes asisten no son "viejitos pasivos" que necesitan ser entretenidos, sino personas activas con un potencial intelectual y creativo enorme. Transformamos los conceptos tradicionales de cuidado asistencial por el de <strong>desarrollo, autonomía y empoderamiento</strong>.
+            </p>
+        </section>
+
+        <!-- Sección 4: Grid de Navegación -->
+        <div class="nav-grid">
+            <a href="quienes-somos.html" class="nav-card">
+                <h3>¿Quiénes Somos?</h3>
+                <p>Conoce nuestra misión, visión, los valores que nos guían y nuestro pilar educativo gerontogógico.</p>
+                <span class="btn-action">Conócenos</span>
+            </a>
+
+            <a href="programa-educativo.html" class="nav-card">
+                <h3>Programa Educativo</h3>
+                <p>Explora nuestros talleres, cursos y metodologías adaptadas especialmente para el desarrollo cognitivo.</p>
+                <span class="btn-action">Ver Talleres</span>
+            </a>
+
+            <a href="contacto.html" class="nav-card">
+                <h3>Contacto y Ubicación</h3>
+                <p>¿Listo para visitarnos? Encuentra nuestra dirección en Tlalnepantla, teléfonos y horarios de atención.</p>
+                <span class="btn-action">Escríbenos</span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Contenedor donde se cargará el pie de página -->
+    <div id="footer-container"></div>
+
+    <script>
+        /* JAVASCRIPT: CONTROL DE TAMAÑO DE LETRA */
+        let currentSize = 18; 
+        function adjustFont(direction) {
+            currentSize += direction * 2;
+            if (currentSize < 14) currentSize = 14;
+            if (currentSize > 24) currentSize = 24;
+            document.documentElement.style.setProperty('--base-font-size', currentSize + 'px');
+        }
+
+        /* JAVASCRIPT: ANIMACIÓN AL DESPLAZARSE */
+        const sections = document.querySelectorAll('section');
+        const observerOptions = { root: null, threshold: 0.05 };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-        })
-        .catch(error => console.error('Error al cargar el navbar:', error));
-</script>
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+        /* JAVASCRIPT: EFECTO FLOTADOR WHATSAPP */
+        window.addEventListener('scroll', function() {
+            var winScrollTop = window.scrollY || document.documentElement.scrollTop;
+            var floater = document.querySelector('.btn-whatsapp-flotante');
+            
+            var fromTop = 100;
+            var topPosition = winScrollTop + fromTop;
+            
+            floater.style.top = topPosition + 'px';
+        });
+
+        window.dispatchEvent(new Event('scroll'));
+
+        /* SCRIPTS DE CARGA DINÁMICA (NAVBAR Y FOOTER) */
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === currentPage) {
+                        link.classList.add('active');
+                    }
+                });
+            })
+            .catch(error => console.error('Error al cargar el navbar:', error));
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el footer:', error));
+    </script>
     
 </body>
 </html>
