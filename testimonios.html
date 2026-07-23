@@ -41,83 +41,6 @@
 
         h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; word-wrap: break-word; }
 
-        /* --- BARRA DE NAVEGACIÓN SUPERIOR ESTILO GOOGLE SITES --- */
-        .main-navbar {
-            background-color: #ff2ee3;
-            width: 100%;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1100;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .nav-logo {
-            height: 36px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .brand-title {
-            font-size: 1.05rem;
-            color: #202124;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 1.8rem;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #3c4043;
-            font-size: 0.92rem;
-            font-weight: 400;
-            transition: color 0.15s ease;
-            white-space: nowrap;
-        }
-
-        .nav-link:hover {
-            color: #000000;
-        }
-
-        /* Página activa marcada en negrita */
-        .nav-link.active {
-            font-weight: 700;
-            color: #000000;
-        }
-
-        .nav-search-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #3c4043;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4px;
-            margin-left: 0.5rem;
-            transition: color 0.2s ease;
-        }
-
-        .nav-search-btn:hover {
-            color: var(--ama-magenta);
-        }
-
         /* HERO SECTION */
         .hero {
             background: linear-gradient(135deg, var(--ama-magenta) 0%, #c4006c 100%);
@@ -355,9 +278,6 @@
         }
 
         @media (max-width: 900px) { 
-            .main-navbar { padding: 0 1rem; }
-            .nav-menu { gap: 1rem; overflow-x: auto; }
-            .nav-link { font-size: 0.85rem; }
             .accessibility-label { display: none; } 
             .accessibility-bar { right: 80px; bottom: 15px; }
             .btn-whatsapp-flotante { bottom: 15px; right: 15px; width: 52px; height: 52px; }
@@ -371,29 +291,8 @@
 </head>
 <body>
 
-<!-- BARRA DE NAVEGACIÓN SUPERIOR ESTILO GOOGLE SITES -->
-<nav class="main-navbar">
-    <a href="index.html" class="nav-brand">
-        <img src="https://i.postimg.cc/VNd9fcNq/logo-png.png" alt="Centro AMA Logo" class="nav-logo">
-        <span class="brand-title">Adultos Mayores Aprendiendo</span>
-    </a>
-
-    <div class="nav-menu">
-        <a href="index.html" class="nav-link">Página principal</a>
-        <a href="quienes-somos.html" class="nav-link">Quienes somos</a>
-        <a href="programa-educativo.html" class="nav-link">Programa Educativo</a>
-        <a href="testimonios.html" class="nav-link active">Testimonios</a>
-        <a href="contacto.html" class="nav-link">Contacto y ubicación</a>
-        
-        <!-- Icono de Búsqueda -->
-        <button class="nav-search-btn" title="Buscar">
-            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-        </button>
-    </div>
-</nav>
+<!-- Contenedor donde se cargará el navbar dinámicamente -->
+<div id="navbar-container"></div>
 
 <!-- Accesibilidad -->
 <div class="accessibility-bar">
@@ -478,8 +377,11 @@
 
 </main>
 
+<!-- Contenedor donde se cargará el pie de página -->
+<div id="footer-container"></div>
+
 <script>
-    // Ajuste dinámico de accesibilidad
+    /* Ajuste dinámico de accesibilidad */
     let currentSize = 18; 
     function adjustFont(direction) {
         currentSize += direction * 2;
@@ -488,14 +390,14 @@
         document.documentElement.style.setProperty('--base-font-size', currentSize + 'px');
     }
 
-    // Animación de aparición suave para secciones
+    /* Animación de aparición suave para secciones */
     const sections = document.querySelectorAll('section');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { root: null, threshold: 0.05 });
     sections.forEach(section => observer.observe(section));
 
-    // Lógica de desplazamiento del carrusel
+    /* Lógica de desplazamiento del carrusel */
     function moverCarrusel(direccion) {
         const track = document.getElementById('track');
         const card = track.querySelector('.testimonial-card');
@@ -507,13 +409,25 @@
             });
         }
     }
-</script>
 
-<!-- Contenedor donde se cargará el pie de página -->
-<div id="footer-container"></div>
+    /* Carga dinámica del Navbar */
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-container').innerHTML = data;
 
-<!-- Script para cargar footer.html dinámicamente -->
-<script>
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        })
+        .catch(error => console.error('Error al cargar el navbar:', error));
+
+    /* Carga dinámica del Footer */
     fetch('footer.html')
         .then(response => response.text())
         .then(data => {
