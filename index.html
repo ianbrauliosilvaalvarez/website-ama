@@ -137,22 +137,14 @@
             border-radius: 0 0 20px 20px;
         }
 
-        .hero h1 {
-            margin: 0;
-            font-size: clamp(2.2rem, 6vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            text-shadow: 0 10px 25px rgba(0,0,0,0.8), 0 0 30px rgba(227, 39, 130, 0.5);
-        }
-
-        .hero h3 {
-            margin: 0.5rem 0 2rem 0;
-            font-size: clamp(1.1rem, 3vw, 1.8rem);
-            letter-spacing: 1px;
-            font-weight: 700;
-            color: var(--ama-yellow);
-            text-shadow: 0 4px 10px rgba(0,0,0,0.7);
+        /* Logo centrado en el Hero */
+        .hero-logo {
+            max-width: 380px;
+            width: 85%;
+            height: auto;
+            margin: 0 auto 2rem auto;
+            display: block;
+            filter: drop-shadow(0px 8px 15px rgba(0,0,0,0.4));
         }
 
         .impact-phrase {
@@ -412,7 +404,7 @@
 </head>
 <body>
 
-<!-- BARRA DE NAVEGACIÓN SUPERIOR (EXACTA A TU CAPTURA) -->
+<!-- BARRA DE NAVEGACIÓN SUPERIOR -->
 <nav class="main-navbar">
     <a href="index.html" class="nav-brand">
         <img src="https://i.postimg.cc/VNd9fcNq/logo-png.png" alt="Centro AMA Logo" class="nav-logo">
@@ -452,8 +444,7 @@
 
 <!-- Hero -->
 <header class="hero">
-    <h1>Centro AMA</h1>
-    <h3>Adultos Mayores Aprendiendo</h3>
+    <img src="https://i.postimg.cc/VNd9fcNq/logo-png.png" alt="Centro AMA - Adultos Mayores Aprendiendo" class="hero-logo">
     
     <a href="testimonios.html" class="impact-phrase">
         QUE DICEN NUESTROS ALUMNOS
