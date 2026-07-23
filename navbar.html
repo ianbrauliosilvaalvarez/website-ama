@@ -1,31 +1,91 @@
 <style>
-    /* 1. CAMBIAR EL COLOR DE FONDO DE LA BARRA */
+    /* Estilos globales para la barra de navegación */
     .main-navbar {
-        background-color: #f0f2f5 !important; /* Cambia este color (ejemplo: #ffffff, #2c2c2c, etc.) */
+        background-color: #ff2ee3 !important; /* Tu color de fondo */
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 1100;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
-    /* 2. CAMBIAR EL COLOR DEL TEXTO Y ENLACES */
+    .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+    }
+
+    .nav-logo {
+        height: 36px;
+        width: auto;
+        object-fit: contain;
+    }
+
     .brand-title {
-        color: #202124 !important; /* Color del texto del título */
+        font-size: 1.05rem;
+        color: #202124 !important;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+
+    .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 1.8rem;
     }
 
     .nav-link {
-        color: #3c4043 !important; /* Color de los botones del menú */
-    }
-
-    /* 3. COLOR CUANDO PASAS EL MOUSE POR ENCIMA (HOVER) */
-    .nav-link:hover {
-        color: #F90186 !important; /* Color al pasar el cursor */
-    }
-
-    /* 4. COLOR DE LA PESTAÑA ACTIVA */
-    .nav-link.active {
-        color: #000000 !important; /* Color del texto activo */
-    }
-
-    /* 5. COLOR DEL BOTÓN DE BÚSQUEDA */
-    .nav-search-btn {
+        text-decoration: none;
         color: #3c4043 !important;
+        font-size: 0.92rem;
+        font-weight: 400;
+        transition: color 0.15s ease;
+        white-space: nowrap;
+    }
+
+    .nav-link:hover {
+        color: #000000 !important;
+    }
+
+    .nav-link.active {
+        font-weight: 700;
+        color: #000000 !important;
+    }
+
+    .nav-search-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #3c4043 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        margin-left: 0.5rem;
+        transition: color 0.2s ease;
+    }
+
+    .nav-search-btn:hover {
+        color: var(--ama-magenta) !important;
+    }
+
+    @media (max-width: 900px) {
+        .main-navbar {
+            padding: 0 1rem;
+        }
+        .nav-menu {
+            gap: 1rem;
+            overflow-x: auto;
+        }
+        .nav-link {
+            font-size: 0.85rem;
+        }
     }
 </style>
 
@@ -42,30 +102,6 @@
         <a href="testimonios.html" class="nav-link">Testimonios</a>
         <a href="contacto.html" class="nav-link">Contacto y ubicación</a>
         
-        <!-- Icono de Búsqueda -->
-        <button class="nav-search-btn" title="Buscar">
-            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-        </button>
-    </div>
-</nav>
-
-<nav class="main-navbar">
-    <a href="index.html" class="nav-brand">
-        <img src="https://i.postimg.cc/VNd9fcNq/logo-png.png" alt="Centro AMA Logo" class="nav-logo">
-        <span class="brand-title">Adultos Mayores Aprendiendo</span>
-    </a>
-
-    <div class="nav-menu">
-        <a href="index.html" class="nav-link">Página principal</a>
-        <a href="quienes-somos.html" class="nav-link">Quienes somos</a>
-        <a href="programa-educativo.html" class="nav-link">Programa Educativo</a>
-        <a href="testimonios.html" class="nav-link">Testimonios</a>
-        <a href="contacto.html" class="nav-link">Contacto y ubicación</a>
-        
-        <!-- Icono de Búsqueda -->
         <button class="nav-search-btn" title="Buscar">
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="8"></circle>
