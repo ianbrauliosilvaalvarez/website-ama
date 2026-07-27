@@ -108,7 +108,7 @@
 
         p { text-align: left; font-size: clamp(0.95rem, 2vw, 1.1rem); color: var(--soft-gray); }
 
-        /* GRID DE TALLERES Y ÁREAS */
+        /* GRID DE TARJETAS CLICABLES */
         .workshops-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -118,16 +118,24 @@
 
         .workshop-card {
             background: #fff;
-            border-radius: 14px;
-            padding: 1.8rem;
+            border-radius: 16px;
+            padding: 1.8rem 1.5rem;
             box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.06);
             border-top: 5px solid var(--ama-magenta);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1.2rem;
+            user-select: none;
         }
+
         .workshop-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
         }
 
         .workshop-card:nth-child(2n) { border-top-color: var(--ama-turquoise); }
@@ -136,13 +144,178 @@
         .workshop-card:nth-child(5n) { border-top-color: var(--ama-lime); }
 
         .workshop-card h3 {
-            margin-top: 0;
+            margin: 0;
             color: var(--dark-gray);
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 700;
             display: flex;
             align-items: center;
+            gap: 10px;
+        }
+
+        /* Botón/Etiqueta que indica que se puede hacer clic */
+        .card-action-badge {
+            display: inline-flex;
+            align-items: center;
             gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--ama-magenta);
+            background-color: rgba(249, 1, 134, 0.08);
+            padding: 0.55rem 1rem;
+            border-radius: 20px;
+            transition: all 0.25s ease;
+        }
+
+        .workshop-card:nth-child(2n) .card-action-badge { color: var(--ama-turquoise); background-color: rgba(0, 186, 192, 0.08); }
+        .workshop-card:nth-child(3n) .card-action-badge { color: #4e9222; background-color: rgba(106, 185, 55, 0.12); }
+        .workshop-card:nth-child(4n) .card-action-badge { color: #b89700; background-color: rgba(255, 210, 0, 0.18); }
+
+        .workshop-card:hover .card-action-badge {
+            background-color: var(--ama-magenta);
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+
+        .workshop-card:nth-child(2n):hover .card-action-badge { background-color: var(--ama-turquoise); color: #fff; }
+        .workshop-card:nth-child(3n):hover .card-action-badge { background-color: var(--ama-green); color: #fff; }
+        .workshop-card:nth-child(4n):hover .card-action-badge { background-color: #d8b200; color: #fff; }
+
+        /* ESTILOS DE LA VENTANA EMERGENTE (MODAL) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            background: #ffffff;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 850px;
+            max-height: 88vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: translateY(0);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: #f0f0f0;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--dark-gray);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .modal-close-btn:hover {
+            background: var(--ama-magenta);
+            color: #ffffff;
+            transform: rotate(90deg);
+        }
+
+        .modal-header {
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            padding-right: 2.5rem;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: clamp(1.4rem, 3.5vw, 2rem);
+            color: var(--dark-gray);
+            border: none;
+            padding-bottom: 0;
+        }
+
+        .modal-header p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1rem;
+            color: var(--soft-gray);
+        }
+
+        /* GRID DE ACTIVIDADES DENTRO DE LA VENTANA */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .activity-card {
+            background: #fafafa;
+            border-radius: 14px;
+            border: 1px solid #e2e2e2;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .activity-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .activity-content {
+            padding: 1.2rem;
+        }
+
+        .activity-content h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.15rem;
+            color: var(--dark-gray);
+            font-weight: 700;
+        }
+
+        .activity-content p {
+            margin: 0;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            color: var(--soft-gray);
         }
 
         /* BARRA DE ACCESIBILIDAD FLOTANTE */
@@ -201,6 +374,7 @@
             .accessibility-bar { right: 80px; bottom: 15px; }
             .btn-whatsapp-flotante { bottom: 15px; right: 15px; width: 52px; height: 52px; }
             .btn-whatsapp-flotante svg { width: 28px; height: 28px; }
+            .modal-container { padding: 1.5rem 1rem; }
         }
     </style>
 </head>
@@ -231,32 +405,32 @@
     <!-- Áreas Formativas -->
     <section>
         <h2>Nuestras Áreas de Aprendizaje</h2>
-        <p>Un modelo integral estructurado para activar capacidades motrices, mentales y creativas:</p>
+        <p>Selecciona cualquiera de las áreas para conocer las actividades y talleres disponibles:</p>
 
         <div class="workshops-grid">
-            <div class="workshop-card">
+            <div class="workshop-card" onclick="openModal('artes')">
                 <h3>🎨 Artes Manuales</h3>
-                <p>Pintura, dibujo, cerámica y manualidades que estimulan la motricidad fina, la paciencia y la libre expresión artística.</p>
+                <div class="card-action-badge">Ver actividades ➔</div>
             </div>
 
-            <div class="workshop-card">
+            <div class="workshop-card" onclick="openModal('humanidades')">
                 <h3>📚 Humanidades</h3>
-                <p>Espacios de debate, literatura, historia y cultura general para mantener la mente curiosa, informada y analítica.</p>
+                <div class="card-action-badge">Ver actividades ➔</div>
             </div>
 
-            <div class="workshop-card">
+            <div class="workshop-card" onclick="openModal('tecnologia')">
                 <h3>📱 Tecnología Digital</h3>
-                <p>Uso práctico del teléfono inteligente, aplicaciones, redes sociales y trámites digitales para la inclusión tecnológica.</p>
+                <div class="card-action-badge">Ver actividades ➔</div>
             </div>
 
-            <div class="workshop-card">
+            <div class="workshop-card" onclick="openModal('activacion')">
                 <h3>🧘 Activación Física</h3>
-                <p>Yoga en silla, estiramientos, baile adaptado y coordinación motriz diseñados para cuidar la movilidad de forma segura.</p>
+                <div class="card-action-badge">Ver actividades ➔</div>
             </div>
 
-            <div class="workshop-card">
+            <div class="workshop-card" onclick="openModal('emocional')">
                 <h3>🧠 Fortalecimiento Emocional</h3>
-                <p>Talleres de memoria, agilidad mental, meditación y manejo del bienestar personal para una vida serena y plena.</p>
+                <div class="card-action-badge">Ver actividades ➔</div>
             </div>
         </div>
     </section>
@@ -264,31 +438,165 @@
     <!-- Vivencia y Servicios en el Centro -->
     <section>
         <h2>Espacios y Servicios Integrales</h2>
+        <p>Haz clic en cada sección para explorar los servicios de convivencia y apoyo:</p>
         
         <div class="workshops-grid">
-            <div class="workshop-card">
+            <div class="workshop-card" onclick="openModal('cafeteria')">
                 <h3>☕ Cafetería y Convivencia</h3>
-                <p>Un cálido punto de encuentro donde nuestros estudiantes comparten charlas, un café y momentos inolvidables entre clases.</p>
+                <div class="card-action-badge">Ver detalles ➔</div>
             </div>
 
-            <div class="workshop-card">
+            <div class="workshop-card" onclick="openModal('complementarias')">
                 <h3>🎉 Actividades Complementarias</h3>
-                <p>Visitas culturales, convivios temáticos, celebraciones y charlas informativas especializadas.</p>
+                <div class="card-action-badge">Ver detalles ➔</div>
             </div>
 
-            <div class="workshop-card">
+            <div class="workshop-card" onclick="openModal('servicios')">
                 <h3>🤝 Servicios Integrales</h3>
-                <p>Acompañamiento cercano, evaluación gerontogógica de bienvenida y orientación personalizada para cada alumno.</p>
+                <div class="card-action-badge">Ver detalles ➔</div>
             </div>
         </div>
     </section>
 
 </main>
 
+<!-- VENTANA EMERGENTE (MODAL) -->
+<div id="activity-modal" class="modal-overlay" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-container">
+        <button class="modal-close-btn" onclick="closeModal()" title="Cerrar ventana">&times;</button>
+        <div class="modal-header">
+            <h2 id="modal-title">Título del Área</h2>
+            <p id="modal-subtitle">Talleres y actividades que componen este programa:</p>
+        </div>
+        <div id="modal-activities-grid" class="activities-grid">
+            <!-- Las tarjetas de actividades se generan dinámicamente con JS -->
+        </div>
+    </div>
+</div>
+
 <!-- Contenedor donde se cargará el pie de página -->
 <div id="footer-container"></div>
 
 <script>
+    /* DATOS DE LAS ACTIVIDADES Y TALLERES POR ÁREA */
+    const activitiesData = {
+        'artes': {
+            title: '🎨 Artes Manuales',
+            subtitle: 'Desarrolla la motricidad fina, creatividad y expresión artística:',
+            items: [
+                { title: 'Pintura y Dibujo', desc: 'Técnicas en acrílico, acuarela y lápiz para plasmar tu creatividad en lienzo.', img: 'images/DSC_8007.jpg' },
+                { title: 'Cerámica y Modelado', desc: 'Creación y pintura de piezas tridimensionales estimulando la paciencia y coordinación.', img: 'images/DSC_8007.jpg' },
+                { title: 'Manualidades y Tejido', desc: 'Elaboración de accesorios decorativos, bordado y expresión textil para el hogar.', img: 'images/DSC_8007.jpg' }
+            ]
+        },
+        'humanidades': {
+            title: '📚 Humanidades',
+            subtitle: 'Espacios de diálogo para mantener la mente activa y curiosa:',
+            items: [
+                { title: 'Círculo de Lectura', desc: 'Análisis ameno de obras literarias, poesía y debate enriquecedor en grupo.', img: 'images/DSC_8007.jpg' },
+                { title: 'Historia y Cultura General', desc: 'Recorridos fascinantes por épocas históricas, arte universal y civilizaciones.', img: 'images/DSC_8007.jpg' },
+                { title: 'Redacción y Memorias', desc: 'Taller para redactar vivencias personales, biografías y anécdotas de vida.', img: 'images/DSC_8007.jpg' }
+            ]
+        },
+        'tecnologia': {
+            title: '📱 Tecnología Digital',
+            subtitle: 'Inclusión tecnológica práctica, guiada y sin miedo:',
+            items: [
+                { title: 'Uso de Teléfono Inteligente', desc: 'Aprende a ajustar tu celular, tomar fotos, guardar contactos y usar aplicaciones.', img: 'images/DSC_8007.jpg' },
+                { title: 'WhatsApp y Redes Sociales', desc: 'Envío de mensajes, videollamadas con seres queridos y navegación segura.', img: 'images/DSC_8007.jpg' },
+                { title: 'Trámites y Servicios Digitales', desc: 'Aprende a navegar por internet y realizar consultas en línea con total seguridad.', img: 'images/DSC_8007.jpg' }
+            ]
+        },
+        'activacion': {
+            title: '🧘 Activación Física',
+            subtitle: 'Movilidad adaptada para cuidar tus articulaciones y energía:',
+            items: [
+                { title: 'Yoga en Silla', desc: 'Estiramientos y posturas guiadas para mejorar flexibilidad sin esfuerzo articular excesivo.', img: 'images/DSC_8007.jpg' },
+                { title: 'Baile Adaptado', desc: 'Secuencias rítmicas divertidas para ejercitar la memoria corporal y el ritmo.', img: 'images/DSC_8007.jpg' },
+                { title: 'Gimnasia y Coordinación', desc: 'Ejercicios diseñados para mantener el equilibrio, prevenir caídas y fortalecer la postura.', img: 'images/DSC_8007.jpg' }
+            ]
+        },
+        'emocional': {
+            title: '🧠 Fortalecimiento Emocional',
+            subtitle: 'Ejercitación cognitiva y cultivo del bienestar personal:',
+            items: [
+                { title: 'Gimnasia Cerebral y Memoria', desc: 'Juegos interactivos, acertijos y ejercicios lógicos para ejercitar la mente.', img: 'images/DSC_8007.jpg' },
+                { title: 'Mindfulness y Relajación', desc: 'Técnicas de respiración guiada y meditación para serenar la mente y reducir el estrés.', img: 'images/DSC_8007.jpg' },
+                { title: 'Desarrollo y Bienestar', desc: 'Charlas participativas para compartir vivencias y fortalecer la autoestima.', img: 'images/DSC_8007.jpg' }
+            ]
+        },
+        'cafeteria': {
+            title: '☕ Cafetería y Convivencia',
+            subtitle: 'Punto de encuentro y convivencia para la comunidad:',
+            items: [
+                { title: 'Espacio de Café y Charla', desc: 'Un área cómoda para compartir una bebida caliente y platicar antes o después de clase.', img: 'images/DSC_8007.jpg' },
+                { title: 'Juegos de Mesa', desc: 'Mesas con ajedrez, dominó y juegos de mesa para ejercitar la agilidad mientras convives.', img: 'images/DSC_8007.jpg' }
+            ]
+        },
+        'complementarias': {
+            title: '🎉 Actividades Complementarias',
+            subtitle: 'Eventos especiales para disfrutar en grupo:',
+            items: [
+                { title: 'Visitas Culturales', desc: 'Recorridos guiados a museos, exposiciones de arte y lugares históricos.', img: 'images/DSC_8007.jpg' },
+                { title: 'Celebraciones y Convivios', desc: 'Festejos temáticos, cumpleaños y eventos especiales de convivencia.', img: 'images/DSC_8007.jpg' }
+            ]
+        },
+        'servicios': {
+            title: '🤝 Servicios Integrales',
+            subtitle: 'Acompañamiento cercano y personalizado:',
+            items: [
+                { title: 'Evaluación Gerontogógica', desc: 'Valoración inicial de bienvenida para adaptar las clases a tus necesidades específicas.', img: 'images/DSC_8007.jpg' },
+                { title: 'Orientación Personalizada', desc: 'Guía y asesoría continua para elegir los talleres idóneos para ti.', img: 'images/DSC_8007.jpg' }
+            ]
+        }
+    };
+
+    /* FUNCIONES DE LA VENTANA EMERGENTE (MODAL) */
+    function openModal(categoryKey) {
+        const data = activitiesData[categoryKey];
+        if (!data) return;
+
+        document.getElementById('modal-title').textContent = data.title;
+        document.getElementById('modal-subtitle').textContent = data.subtitle;
+
+        const gridContainer = document.getElementById('modal-activities-grid');
+        gridContainer.innerHTML = '';
+
+        data.items.forEach(item => {
+            const cardHTML = `
+                <div class="activity-card">
+                    <img src="${item.img}" alt="${item.title}">
+                    <div class="activity-content">
+                        <h4>${item.title}</h4>
+                        <p>${item.desc}</p>
+                    </div>
+                </div>
+            `;
+            gridContainer.innerHTML += cardHTML;
+        });
+
+        const modal = document.getElementById('activity-modal');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; /* Evita scroll en el fondo */
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('activity-modal');
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; /* Restaura scroll */
+    }
+
+    function closeModalOnBackdrop(event) {
+        if (event.target.id === 'activity-modal') {
+            closeModal();
+        }
+    }
+
+    /* Cerrar modal con la tecla Escape */
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
+
     /* Control de tamaño de fuente */
     let currentSize = 18; 
     function adjustFont(direction) {
