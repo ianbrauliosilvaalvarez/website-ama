@@ -38,6 +38,8 @@
         color: #202124 !important;
         font-weight: 600;
         white-space: nowrap;
+        /* Contorno blanco para mejorar la legibilidad */
+        text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff, 0 0 4px #ffffff;
     }
 
     /* Ocultar el checkbox de control */
@@ -79,6 +81,8 @@
         font-weight: 500;
         transition: color 0.15s ease;
         white-space: nowrap;
+        /* Contorno blanco ligero en escritorio */
+        text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff, 0 0 4px #ffffff;
     }
 
     .nav-link:hover,
@@ -97,6 +101,7 @@
         justify-content: center;
         padding: 4px;
         transition: color 0.2s ease;
+        filter: drop-shadow(0 0 2px #ffffff);
     }
 
     .nav-search-btn:hover {
@@ -116,6 +121,11 @@
 
         .brand-title {
             font-size: 0.95rem;
+        }
+
+        /* Ocultar la lupa en celulares/móvil */
+        .nav-search-btn {
+            display: none !important;
         }
 
         /* Convertir el menú horizontal en un desplegable vertical */
@@ -142,15 +152,13 @@
             padding: 0.85rem 1.5rem;
             font-size: 1rem;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-search-btn {
-            margin: 0.85rem 1.5rem 1rem 1.5rem;
+            /* Quitar la sombra de texto en el desplegable móvil ya que el fondo es blanco */
+            text-shadow: none;
         }
 
         /* Abrir menú al tocar la hamburguesa */
         .nav-toggle:checked ~ .nav-menu {
-            max-height: 400px;
+            max-height: 350px;
             padding: 0.5rem 0;
         }
 
@@ -167,7 +175,6 @@
     }
 
     @media (max-width: 480px) {
-        /* En celulares pequeños ocultamos el texto para dejar espacio al logo y al botón */
         .brand-title {
             display: none;
         }
@@ -180,7 +187,7 @@
         <span class="brand-title">Adultos Mayores Aprendiendo</span>
     </a>
 
-    <!-- Checkbox e icono para abrir/cerrar menú en celular sin necesidad de JS -->
+    <!-- Checkbox e icono para abrir/cerrar menú en celular -->
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú de navegación">
         <span></span>
