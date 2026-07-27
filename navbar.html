@@ -36,15 +36,15 @@
     .brand-title {
         font-size: 1.05rem;
         color: #ffffff !important;
-        font-weight: 700;
+        font-weight: 600;
         white-space: nowrap;
-        /* Texto blanco con contorno negro de muy poco grosor */
-        -webkit-text-stroke: 0.4px #000000;
+        /* Texto blanco con contorno negro muy ligero */
+        -webkit-text-stroke: 0.3px #000000;
         text-shadow: 
-            -0.8px -0.8px 0 #000000,
-             0.8px -0.8px 0 #000000,
-            -0.8px  0.8px 0 #000000,
-             0.8px  0.8px 0 #000000;
+            -0.5px -0.5px 0 #000000,
+             0.5px -0.5px 0 #000000,
+            -0.5px  0.5px 0 #000000,
+             0.5px  0.5px 0 #000000;
     }
 
     /* Ocultar el checkbox de control */
@@ -70,8 +70,7 @@
         background-color: #ffffff;
         border-radius: 3px;
         transition: all 0.3s ease;
-        /* Contorno negro delgado para el icono hamburguesa */
-        box-shadow: 0 0 0 1px #000000;
+        /* Sin contorno negro en la hamburguesa */
     }
 
     /* Menú de navegación en escritorio */
@@ -85,22 +84,22 @@
         text-decoration: none;
         color: #ffffff !important;
         font-size: 0.95rem;
-        font-weight: 600;
+        font-weight: 500;
         transition: all 0.2s ease;
         white-space: nowrap;
-        /* Texto blanco con contorno negro de muy poco grosor */
-        -webkit-text-stroke: 0.4px #000000;
+        /* Texto blanco con contorno negro muy ligero */
+        -webkit-text-stroke: 0.3px #000000;
         text-shadow: 
-            -0.8px -0.8px 0 #000000,
-             0.8px -0.8px 0 #000000,
-            -0.8px  0.8px 0 #000000,
-             0.8px  0.8px 0 #000000;
+            -0.5px -0.5px 0 #000000,
+             0.5px -0.5px 0 #000000,
+            -0.5px  0.5px 0 #000000,
+             0.5px  0.5px 0 #000000;
     }
 
     .nav-link:hover,
     .nav-link.active {
-        color: #FFD200 !important; /* Resaltado amarillo al pasar el mouse o estar activo */
-        font-weight: 800;
+        color: #FFD200 !important; /* Resaltado amarillo sutil en hover */
+        font-weight: 700;
     }
 
     .nav-search-btn {
@@ -113,11 +112,7 @@
         justify-content: center;
         padding: 4px;
         transition: color 0.2s ease;
-        /* Contorno negro sutil para el icono de búsqueda */
-        filter: drop-shadow(0.8px 0px 0px #000000) 
-                drop-shadow(-0.8px 0px 0px #000000) 
-                drop-shadow(0px 0.8px 0px #000000) 
-                drop-shadow(0px -0.8px 0px #000000);
+        filter: drop-shadow(0.5px 0.5px 0px #000000) drop-shadow(-0.5px -0.5px 0px #000000);
     }
 
     .nav-search-btn:hover {
@@ -144,15 +139,17 @@
             display: none !important;
         }
 
-        /* Convertir el menú horizontal en un desplegable vertical */
+        /* Menú desplegable con fondo de imagen en celulares */
         .nav-menu {
             position: absolute;
             top: 100%;
             left: 0;
             width: 100%;
-            background: rgba(5, 163, 0, 0.96); /* Verde traslúcido para contrastar con texto blanco */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background-image: url('images/navbar-bg.png') !important;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #fc56f4;
             flex-direction: column;
             align-items: flex-start;
             gap: 0;
@@ -160,7 +157,7 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.35s ease, padding 0.35s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
         }
 
         .nav-link {
