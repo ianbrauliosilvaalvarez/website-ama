@@ -38,13 +38,7 @@
         color: #ffffff !important;
         font-weight: 700;
         white-space: nowrap;
-        /* Texto blanco con contorno negro muy ligero */
-        -webkit-text-stroke: 0.1px #000000;
-        text-shadow: 
-            -0.5px -0.5px 0 #000000,
-             0.5px -0.5px 0 #000000,
-            -0.5px  0.5px 0 #000000,
-             0.5px  0.5px 0 #000000;
+        /* Contorno negro removido por completo */
     }
 
     /* Ocultar el checkbox de control */
@@ -70,7 +64,6 @@
         background-color: #ffffff;
         border-radius: 3px;
         transition: all 0.3s ease;
-        /* Sin contorno negro en la hamburguesa */
     }
 
     /* Menú de navegación en escritorio */
@@ -81,32 +74,46 @@
     }
 
     .nav-link {
+        position: relative;
         text-decoration: none;
         color: #ffffff !important;
         font-size: 0.95rem;
         font-weight: 700;
-        transition: all 0.2s ease;
         white-space: nowrap;
-        /* Texto blanco con contorno negro muy ligero */
-        -webkit-text-stroke: 0.1px #000000;
-        text-shadow: 
-            -0.5px -0.5px 0 #000000,
-             0.5px -0.5px 0 #000000,
-            -0.5px  0.5px 0 #000000,
-             0.5px  0.5px 0 #000000;
+        padding: 6px 0;
+        /* Contorno negro removido por completo */
+        transition: color 0.3s ease, transform 0.25s ease;
     }
 
+    /* Línea animada inferior para cada pestaña */
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 3px;
+        bottom: 0;
+        left: 50%;
+        background-color: #ffffff; /* Color blanco */
+        border-radius: 2px;
+        transition: width 0.3s ease, left 0.3s ease;
+    }
+
+    /* Animación limpia al pasar el mouse y en pestaña activa */
     .nav-link:hover,
     .nav-link.active {
-        color: #ffffff !important; /* Resaltado sutil en hover */
-        font-weight: 900;
-        font-size: 1.00rem;
+        color: #ffffff !important;
+        transform: translateY(-2px);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        width: 100%;
+        left: 0;
     }
 
     .nav-search-btn {
         display: none !important;
     }
-
 
     /* --- ADAPTACIÓN RESPONSIVA (CELULAR Y TABLET) --- */
     @media (max-width: 900px) {
@@ -154,6 +161,12 @@
             padding: 0.85rem 1.5rem;
             font-size: 1rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            transform: none !important;
+        }
+
+        /* Desactivar barra inferior animada en menú móvil */
+        .nav-link::after {
+            display: none;
         }
 
         /* Abrir menú al tocar la hamburguesa */
