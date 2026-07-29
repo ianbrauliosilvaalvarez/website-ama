@@ -259,63 +259,82 @@
             box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
         }
 
-        /* BARRA DE ACCESIBILIDAD FLOTANTE */
+        /* --- ACCESIBILIDAD FLOTANTE --- */
         .accessibility-bar {
-            position: fixed; 
-            bottom: 25px; 
-            right: 95px;
+            position: fixed;
+            bottom: 20px;
+            right: 15px;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
             padding: 0.4rem 0.8rem;
             border-radius: 30px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
             z-index: 1000;
             border: 1px solid rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .accessibility-btn {
-            background: #f0f0f0; border: none; width: 36px; height: 36px; border-radius: 50%;
-            font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.95rem; cursor: pointer;
-        }
-
-        /* BOTÓN FLOTANTE DE WHATSAPP */
-        .btn-whatsapp-flotante {
-            position: fixed; 
-            bottom: 25px; 
-            right: 25px;
-            width: 60px; 
-            height: 60px;
-            background-color: #25d366; 
-            border-radius: 50%; 
+            background: #f0f0f0;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 0.95rem;
+            cursor: pointer;
             display: flex;
-            justify-content: center; 
-            align-items: center; 
-            box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
-            z-index: 9999;
-            text-decoration: none; 
-            transition: all 0.3s ease;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+        
+        .accessibility-btn[title="Aumentar tamaño"] { background-color: rgba(59, 178, 184, 0.2); color: var(--ama-turquoise); }
+        .accessibility-btn[title="Disminuir tamaño"] { background-color: rgba(227, 39, 130, 0.2); color: var(--ama-magenta); }
+
+        .accessibility-label {
+            font-size: 0.75rem;
+            color: var(--soft-gray);
+            font-weight: 700;
         }
 
-        .btn-whatsapp-flotante:hover { 
-            transform: scale(1.12); 
-            box-shadow: 0px 8px 22px rgba(37, 211, 102, 0.45);
+        /* --- BOTÓN WHATSAPP FLOTANTE --- */
+        .btn-whatsapp-flotante {
+            position: absolute;
+            top: 100px;
+            left: 15px;
+            width: 55px;
+            height: 55px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            text-decoration: none;
+            transition: top 0.5s ease-out, transform 0.3s ease, background-color 0.3s ease;
         }
 
-        .btn-whatsapp-flotante svg { 
-            width: 32px; 
-            height: 32px; 
-            fill: white; 
+        .btn-whatsapp-flotante:hover {
+            transform: scale(1.1);
+            background-color: #20b858;
         }
 
-        @media (max-width: 900px) { 
-            .accessibility-label { display: none; } 
-            .accessibility-bar { right: 80px; bottom: 15px; }
-            .btn-whatsapp-flotante { bottom: 15px; right: 15px; width: 52px; height: 52px; }
-            .btn-whatsapp-flotante svg { width: 28px; height: 28px; }
-            .map-container { height: 380px; }
+        .btn-whatsapp-flotante svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        @media (max-width: 900px) {
+            .accessibility-label {
+                display: none;
+            }
         }
     </style>
 </head>
