@@ -438,24 +438,21 @@
         if (currentSize > 24) currentSize = 24;
         document.documentElement.style.setProperty('--base-font-size', currentSize + 'px');
     }
-    <!---->
-    <!-- /* Carga dinámica del Navbar */ -->
-    <!-- fetch('navbar.html') -->
-    <!--     .then(response => response.text()) -->
-    <!--     .then(data => { -->
-    <!--         document.getElementById('navbar-container').innerHTML = data; -->
-    <!---->
-    <!--         const currentPage = window.location.pathname.split('/').pop() || 'contacto.html'; -->
-    <!--         const navLinks = document.querySelectorAll('.nav-link'); -->
-    <!---->
-    <!--         navLinks.forEach(link => { -->
-    <!--             if (link.getAttribute('href') === currentPage) { -->
-    <!--                 link.classList.add('active'); -->
-    <!--             } -->
-    <!--         }); -->
-    <!--     }) -->
-    <!--     .catch(error => console.error('Error al cargar el navbar:', error)); -->
-    <!---->
+    /* Carga dinámica del Navbar */
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-container').innerHTML = data;
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+           
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        })
+        .catch(error => console.error('Error al cargar el navbar:', error));
     /* Carga dinámica del Footer */
     fetch('footer.html')
         .then(response => response.text())
