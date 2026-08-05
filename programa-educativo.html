@@ -411,18 +411,13 @@
         <p>Selecciona cualquiera de las áreas para conocer las actividades y talleres disponibles:</p>
 
         <div class="workshops-grid">
-            <div class="workshop-card" onclick="openModal('artes')">
-                <h3>🎨 Artes Manuales</h3>
-                <div class="card-action-badge">Ver actividades ➔</div>
-            </div>
-
             <div class="workshop-card" onclick="openModal('humanidades')">
                 <h3>📚 Humanidades</h3>
                 <div class="card-action-badge">Ver actividades ➔</div>
             </div>
 
             <div class="workshop-card" onclick="openModal('tecnologia')">
-                <h3>📱 Tecnología Digital</h3>
+                <h3>💻 Tecnología</h3>
                 <div class="card-action-badge">Ver actividades ➔</div>
             </div>
 
@@ -435,6 +430,16 @@
                 <h3>🧠 Fortalecimiento Emocional</h3>
                 <div class="card-action-badge">Ver actividades ➔</div>
             </div>
+
+            <div class="workshop-card" onclick="openModal('artes')">
+                <h3>🎨 Artes Manuales</h3>
+                <div class="card-action-badge">Ver actividades ➔</div>
+            </div>
+
+            <div class="workshop-card" onclick="openModal('talleres')">
+                <h3>💡 Talleres</h3>
+                <div class="card-action-badge">Ver actividades ➔</div>
+            </div>
         </div>
     </section>
 
@@ -444,8 +449,8 @@
         <p>Haz clic en cada sección para explorar los servicios de convivencia y apoyo:</p>
         
         <div class="workshops-grid">
-            <div class="workshop-card" onclick="openModal('cafeteria')">
-                <h3>☕ Cafetería y Convivencia</h3>
+            <div class="workshop-card" onclick="openModal('servicios')">
+                <h3>🤝 Servicios Integrales</h3>
                 <div class="card-action-badge">Ver detalles ➔</div>
             </div>
 
@@ -454,8 +459,8 @@
                 <div class="card-action-badge">Ver detalles ➔</div>
             </div>
 
-            <div class="workshop-card" onclick="openModal('servicios')">
-                <h3>🤝 Servicios Integrales</h3>
+            <div class="workshop-card" onclick="openModal('cafeteria')">
+                <h3>☕ Cafetería</h3>
                 <div class="card-action-badge">Ver detalles ➔</div>
             </div>
         </div>
@@ -483,73 +488,91 @@
 <script>
     /* DATOS DE LAS ACTIVIDADES Y TALLERES POR ÁREA */
     const activitiesData = {
-        'artes': {
-            title: '🎨 Artes Manuales',
-            subtitle: 'Desarrolla la motricidad fina, creatividad y expresión artística:',
-            items: [
-                { title: 'Pintura y Dibujo', desc: 'Técnicas en acrílico, acuarela y lápiz para plasmar tu creatividad en lienzo.', img: 'images/DSC_8007.jpg' },
-                { title: 'Cerámica y Modelado', desc: 'Creación y pintura de piezas tridimensionales estimulando la paciencia y coordinación.', img: 'images/DSC_8007.jpg' },
-                { title: 'Manualidades y Tejido', desc: 'Elaboración de accesorios decorativos, bordado y expresión textil para el hogar.', img: 'images/DSC_8007.jpg' }
-            ]
-        },
         'humanidades': {
             title: '📚 Humanidades',
-            subtitle: 'Espacios de diálogo para mantener la mente activa y curiosa:',
+            subtitle: 'Espacios de diálogo, música e idiomas para mantener la mente activa:',
             items: [
-                { title: 'Círculo de Lectura', desc: 'Análisis ameno de obras literarias, poesía y debate enriquecedor en grupo.', img: 'images/DSC_8007.jpg' },
-                { title: 'Historia y Cultura General', desc: 'Recorridos fascinantes por épocas históricas, arte universal y civilizaciones.', img: 'images/DSC_8007.jpg' },
-                { title: 'Redacción y Memorias', desc: 'Taller para redactar vivencias personales, biografías y anécdotas de vida.', img: 'images/DSC_8007.jpg' }
+                { title: 'Coro', desc: 'Ensamble vocal para ejercitar la memoria, la respiración y disfrutar del canto en grupo.', img: 'images/DSC_8007.jpg' },
+                { title: 'Club de conversación en inglés (básico e intermedio)', desc: 'Práctica conversacional guiada para reforzar el idioma inglés a tu ritmo.', img: 'images/DSC_8007.jpg' },
+                { title: 'Guitarra', desc: 'Aprende acordes, melodías y canciones para estimular la coordinación y la expresión musical.', img: 'images/DSC_8007.jpg' }
             ]
         },
         'tecnologia': {
-            title: '📱 Tecnología Digital',
-            subtitle: 'Inclusión tecnológica práctica, guiada y sin miedo:',
+            title: '💻 Tecnología',
+            subtitle: 'Inclusión tecnológica práctica, guiada y sin complicaciones:',
             items: [
-                { title: 'Uso de Teléfono Inteligente', desc: 'Aprende a ajustar tu celular, tomar fotos, guardar contactos y usar aplicaciones.', img: 'images/DSC_8007.jpg' },
-                { title: 'WhatsApp y Redes Sociales', desc: 'Envío de mensajes, videollamadas con seres queridos y navegación segura.', img: 'images/DSC_8007.jpg' },
-                { title: 'Trámites y Servicios Digitales', desc: 'Aprende a navegar por internet y realizar consultas en línea con total seguridad.', img: 'images/DSC_8007.jpg' }
+                { title: 'Computación y celular', desc: 'Uso práctico de computadoras, smartphones, aplicaciones esenciales y navegación segura.', img: 'images/DSC_8007.jpg' }
             ]
         },
         'activacion': {
             title: '🧘 Activación Física',
-            subtitle: 'Movilidad adaptada para cuidar tus articulaciones y energía:',
+            subtitle: 'Movilidad, flexibilidad y energía adaptadas para cuidar tus articulaciones:',
             items: [
-                { title: 'Yoga en Silla', desc: 'Estiramientos y posturas guiadas para mejorar flexibilidad sin esfuerzo articular excesivo.', img: 'images/DSC_8007.jpg' },
-                { title: 'Baile Adaptado', desc: 'Secuencias rítmicas divertidas para ejercitar la memoria corporal y el ritmo.', img: 'images/DSC_8007.jpg' },
-                { title: 'Gimnasia y Coordinación', desc: 'Ejercicios diseñados para mantener el equilibrio, prevenir caídas y fortalecer la postura.', img: 'images/DSC_8007.jpg' }
+                { title: 'Qigong', desc: 'Ejercicios suaves de respiración y movimiento enfocado para cultivar la energía vital.', img: 'images/DSC_8007.jpg' },
+                { title: 'Taijiquan (taichi)', desc: 'Arte marcial suave para favorecer el equilibrio, la concentración y la fluidez corporal.', img: 'images/DSC_8007.jpg' },
+                { title: 'Taller coreográfico', desc: 'Expresión corporal y secuencias rítmicas para ejercitar la memoria y la agilidad.', img: 'images/DSC_8007.jpg' },
+                { title: 'Yoga', desc: 'Posturas y respiraciones para tonificar, estirar y liberar tensión acumulada.', img: 'images/DSC_8007.jpg' },
+                { title: 'Yoga / Pilates', desc: 'Combinación enfocada en la postura, la fuerza central y la elasticidad muscular.', img: 'images/DSC_8007.jpg' },
+                { title: 'Ritmos latinos', desc: 'Baile alegre y dinámico para mejorar la salud cardiovascular y la coordinación.', img: 'images/DSC_8007.jpg' },
+                { title: 'Zumba y acondicionamiento físico', desc: 'Rutinas divertidas para incrementar la resistencia corporal y la vitalidad.', img: 'images/DSC_8007.jpg' }
             ]
         },
         'emocional': {
             title: '🧠 Fortalecimiento Emocional',
-            subtitle: 'Ejercitación cognitiva y cultivo del bienestar personal:',
+            subtitle: 'Herramientas de autoconocimiento, gestión emocional y calma interior:',
             items: [
-                { title: 'Gimnasia Cerebral y Memoria', desc: 'Juegos interactivos, acertijos y ejercicios lógicos para ejercitar la mente.', img: 'images/DSC_8007.jpg' },
-                { title: 'Mindfulness y Relajación', desc: 'Técnicas de respiración guiada y meditación para serenar la mente y reducir el estrés.', img: 'images/DSC_8007.jpg' },
-                { title: 'Desarrollo y Bienestar', desc: 'Charlas participativas para compartir vivencias y fortalecer la autoestima.', img: 'images/DSC_8007.jpg' }
+                { title: 'Bioenergética', desc: 'Terapia corporal para liberar tensiones emocionales y restaurar la energía personal.', img: 'images/DSC_8007.jpg' },
+                { title: 'Serena-mente (manejando mi ansiedad)', desc: 'Estrategias dinámicas y prácticas para regular el estrés y la ansiedad cotidiana.', img: 'images/DSC_8007.jpg' },
+                { title: 'Meditación (sanación del corazón)', desc: 'Prácticas contemplativas para cultivar la paz interior y el bienestar emocional.', img: 'images/DSC_8007.jpg' },
+                { title: 'Programación neurolingüística', desc: 'Técnicas de comunicación y pensamiento para generar hábitos mentales positivos.', img: 'images/DSC_8007.jpg' },
+                { title: 'Eneagrama', desc: 'Mapa de personalidad para comprender mejor nuestras emociones y relaciones personales.', img: 'images/DSC_8007.jpg' }
             ]
         },
-        'cafeteria': {
-            title: '☕ Cafetería y Convivencia',
-            subtitle: 'Punto de encuentro y convivencia para la comunidad:',
+        'artes': {
+            title: '🎨 Artes Manuales',
+            subtitle: 'Desarrolla la motricidad fina, creatividad y sensibilidad estética:',
             items: [
-                { title: 'Espacio de Café y Charla', desc: 'Un área cómoda para compartir una bebida caliente y platicar antes o después de clase.', img: 'images/DSC_8007.jpg' },
-                { title: 'Juegos de Mesa', desc: 'Mesas con ajedrez, dominó y juegos de mesa para ejercitar la agilidad mientras convives.', img: 'images/DSC_8007.jpg' }
+                { title: 'Pintura al óleo', desc: 'Técnicas de color, mezcla y pincelada para plasmar tus creaciones en lienzo.', img: 'images/DSC_8007.jpg' },
+                { title: 'Bisutería fina', desc: 'Diseño y armado artesanal de accesorios únicos con técnicas de alta precisión.', img: 'images/DSC_8007.jpg' }
             ]
         },
-        'complementarias': {
-            title: '🎉 Actividades Complementarias',
-            subtitle: 'Eventos especiales para disfrutar en grupo:',
+        'talleres': {
+            title: '💡 Talleres',
+            subtitle: 'Espacios formativos enfocados en temas actuales y desarrollo personal:',
             items: [
-                { title: 'Visitas Culturales', desc: 'Recorridos guiados a museos, exposiciones de arte y lugares históricos.', img: 'images/DSC_8007.jpg' },
-                { title: 'Celebraciones y Convivios', desc: 'Festejos temáticos, cumpleaños y eventos especiales de convivencia.', img: 'images/DSC_8007.jpg' }
+                { title: 'Photoshop', desc: 'Taller de edición digital para retocar, restaurar y componer tus fotografías favoritas.', img: 'images/DSC_8007.jpg' },
+                { title: 'Automaquillaje', desc: 'Técnicas de belleza y cuidado facial diseñadas para resaltar tu estilo natural.', img: 'images/DSC_8007.jpg' },
+                { title: 'Inteligencia artificial', desc: 'Descubre de forma sencilla cómo usar las herramientas de IA en tu vida diaria.', img: 'images/DSC_8007.jpg' },
+                { title: 'Amor y sexualidad después de los 60 años', desc: 'Un espacio de diálogo abierto, respetuoso y positivo sobre la afectividad e intimidad.', img: 'images/DSC_8007.jpg' }
             ]
         },
         'servicios': {
             title: '🤝 Servicios Integrales',
-            subtitle: 'Acompañamiento cercano y personalizado:',
+            subtitle: 'Atención personalizada para el cuidado de la salud física y emocional:',
             items: [
-                { title: 'Evaluación Gerontogógica', desc: 'Valoración inicial de bienvenida para adaptar las clases a tus necesidades específicas.', img: 'images/DSC_8007.jpg' },
-                { title: 'Orientación Personalizada', desc: 'Guía y asesoría continua para elegir los talleres idóneos para ti.', img: 'images/DSC_8007.jpg' }
+                { title: 'Psicoterapia', desc: 'Acompañamiento profesional individual para el bienestar y equilibrio mental.', img: 'images/DSC_8007.jpg' },
+                { title: 'Tanatología', desc: 'Espacio de escucha y apoyo respetuoso para procesar pérdidas y momentos de duelo.', img: 'images/DSC_8007.jpg' },
+                { title: 'Terapia de barras', desc: 'Técnica de estimulación corporal suave para reducir la sobrecarga mental y el estrés.', img: 'images/DSC_8007.jpg' },
+                { title: 'Medicina general', desc: 'Consultas de valoración, orientación médica preventiva y cuidado integral.', img: 'images/DSC_8007.jpg' },
+                { title: 'Acupuntura', desc: 'Tratamiento tradicional para aliviar molestias, dolores y restaurar el equilibrio.', img: 'images/DSC_8007.jpg' }
+            ]
+        },
+        'complementarias': {
+            title: '🎉 Actividades Complementarias',
+            subtitle: 'Eventos de convivencia, esparcimiento y enriquecimiento cultural:',
+            items: [
+                { title: 'Conferencias', desc: 'Ponencias magistrales sobre temas de salud, cultura e interés general.', img: 'images/DSC_8007.jpg' },
+                { title: 'Pláticas', desc: 'Charlas comunitarias para compartir información útil y temas de bienestar.', img: 'images/DSC_8007.jpg' },
+                { title: 'Eventos recreativos', desc: 'Dinámicas festivas e integradoras diseñadas para el disfrute en grupo.', img: 'images/DSC_8007.jpg' },
+                { title: 'Tardeadas', desc: 'Encuentros sociales con música y baile para convivir y pasar momentos amenos.', img: 'images/DSC_8007.jpg' },
+                { title: 'Viajes y excursiones', desc: 'Salidas organizadas para descubrir nuevos lugares y disfrutar juntos.', img: 'images/DSC_8007.jpg' }
+            ]
+        },
+        'cafeteria': {
+            title: '☕ Cafetería',
+            subtitle: 'Punto de encuentro, nutrición y descanso para la comunidad:',
+            items: [
+                { title: 'Desayunos y comidas', desc: 'Opciones de alimentos frescos, nutritivos y deliciosos para compartir en el Centro.', img: 'images/DSC_8007.jpg' }
             ]
         }
     };
