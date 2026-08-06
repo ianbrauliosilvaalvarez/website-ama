@@ -236,7 +236,7 @@
             font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.95rem; cursor: pointer;
         }
 
-        /* BOTÓN FLOTANTE DE WHATSAPP */
+        /* --- BOTÓN WHATSAPP FLOTANTE --- */
         .btn-whatsapp-flotante {
             position: absolute;
             top: 100px;
@@ -253,6 +253,7 @@
             text-decoration: none;
             transition: top 0.5s ease-out, transform 0.3s ease, background-color 0.3s ease;
         }
+
         .btn-whatsapp-flotante:hover {
             transform: scale(1.1);
             background-color: #20b858;
@@ -263,14 +264,11 @@
             height: 30px;
             fill: white;
         }
+
         @media (max-width: 900px) {
-            .accessibility-label { display: none; }
-            .accessibility-bar { right: 80px; bottom: 15px; }
-            .btn-whatsapp-flotante { bottom: 15px; right: 15px; width: 52px; height: 52px; }
-            .btn-whatsapp-flotante svg { width: 28px; height: 28px; }
-            .testimonial-card { flex: 0 0 88%; }
-            .btn-left { left: -5px; }
-            .btn-right { right: -5px; }
+            .accessibility-label {
+                display: none;
+            }
         }
 
         /* --- ESTILOS DE LA SECCIÓN DE GALERÍA (INTEGRADA) --- */
@@ -744,6 +742,20 @@
             });
         }
     }
+
+        /* JAVASCRIPT: EFECTO FLOTADOR WHATSAPP */
+        window.addEventListener('scroll', function() {
+            var winScrollTop = window.scrollY || document.documentElement.scrollTop;
+            var floater = document.querySelector('.btn-whatsapp-flotante');
+            
+            var fromTop = 100;
+            var topPosition = winScrollTop + fromTop;
+            
+            floater.style.top = topPosition + 'px';
+        });
+
+        window.dispatchEvent(new Event('scroll'));
+
     /* Carga dinámica del Navbar */
     fetch('navbar.html')
         .then(response => response.text())
